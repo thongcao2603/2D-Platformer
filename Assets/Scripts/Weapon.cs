@@ -5,14 +5,17 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float fireRate = 0;
+    float timeToFire = 0;
+
     public float Damage = 10;
     public LayerMask whatToHit;
 
-    float timeToFire = 0;
+
     float timeToSpawn = 0;
     public float effectSpawnRate = 10;
     Transform firePoint;
     public Transform bulletTrailPrefab;
+    public Transform muzzlePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +62,10 @@ public class Weapon : MonoBehaviour
     void Effect(Vector2 mousePos)
     {
         Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation).GetComponent<LineRenderer>();
-
+        Transform muzzle = Instantiate(muzzlePrefab, firePoint.position, firePoint.rotation) as Transform;
+        muzzle.parent = firePoint;
+        float size = Random.Range(0.6f, 0.9f);
+        muzzle.localScale = new Vector3(size, size, size);
+        Destroy(muzzle.gameObject, 0.02f);
     }
 }

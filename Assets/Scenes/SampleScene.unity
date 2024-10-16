@@ -204,8 +204,9 @@ MonoBehaviour:
   whatToHit:
     serializedVersion: 2
     m_Bits: 435
-  firePoint: {fileID: 62670011}
+  effectSpawnRate: 10
   bulletTrailPrefab: {fileID: 728920857563352883, guid: 62dbfcac9455b7642ac20fe470018fbf, type: 3}
+  muzzlePrefab: {fileID: 2111073030434256414, guid: 1dc6d4f9f634901458cf9da79a0e9ba5, type: 3}
 --- !u!212 &145141601
 SpriteRenderer:
   m_ObjectHideFlags: 0
