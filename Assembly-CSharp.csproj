@@ -69,8 +69,8 @@
     <Compile Include="Assets\Scripts\ArmRotation.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\Parallaxing.cs" />
+    <Compile Include="Assets\Scripts\MoveTrail.cs" />
     <Compile Include="Assets\Scripts\Camera2DFollow.cs" />
-    <Compile Include="Assets\MoveTrail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

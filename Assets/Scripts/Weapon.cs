@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
 
     float timeToFire = 0;
     float timeToSpawn = 0;
-    float effectSpawnRate = 10;
+    public float effectSpawnRate = 10;
     Transform firePoint;
     public Transform bulletTrailPrefab;
     // Start is called before the first frame update
@@ -58,10 +58,7 @@ public class Weapon : MonoBehaviour
 
     void Effect(Vector2 mousePos)
     {
-        LineRenderer lr = Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation).GetComponent<LineRenderer>();
-        Vector3[] positions = new Vector3[2];
-        positions[0] = new Vector3(firePoint.position.x, firePoint.position.y, 0);
-        positions[1] = new Vector3(mousePos.x, mousePos.y, 0);
-        lr.SetPositions(positions);
+        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation).GetComponent<LineRenderer>();
+
     }
 }
