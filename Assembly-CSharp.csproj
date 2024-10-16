@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ArmRotation.cs" />
+    <Compile Include="Assets\Weapon.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\Parallaxing.cs" />
     <Compile Include="Assets\Camera2DFollow.cs" />

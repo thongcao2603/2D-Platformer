@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
     {
         IsGrounded();
         Movement();
-        Debug.Log(facingRight);
     }
 
     void Movement()
