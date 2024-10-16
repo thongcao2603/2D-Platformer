@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     public LayerMask whatToHit;
 
     float timeToFire = 0;
+    float timeToSpawn = 0;
+    float effectSpawnRate = 10;
     Transform firePoint;
     public Transform bulletTrailPrefab;
     // Start is called before the first frame update
@@ -43,7 +45,11 @@ public class Weapon : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 firePosition = firePoint.position;
         RaycastHit2D hit = Physics2D.Raycast(firePosition, mousePosition - firePosition, 100, whatToHit);
-        Effect(mousePosition);
+        if (Time.time >= timeToSpawn)
+        {
+            Effect(mousePosition);
+            timeToSpawn = Time.time + 1 / effectSpawnRate;
+        }
         if (hit.collider != null)
         {
             Debug.Log(hit.collider);
