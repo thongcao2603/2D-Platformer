@@ -16,9 +16,13 @@ public class Player : MonoBehaviour
     Vector3 velocity;
 
     bool isGrounded;
+    bool facingRight = true;
+
+    Transform playerPhysics;
     private void Awake()
     {
         rigi = GetComponent<Rigidbody2D>();
+        playerPhysics = transform.Find("Avatar");
     }
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour
     {
         IsGrounded();
         Movement();
+        Debug.Log(facingRight);
     }
 
     void Movement()
@@ -42,6 +47,14 @@ public class Player : MonoBehaviour
         }
 
         float x = Input.GetAxis("Horizontal");
+        if (x > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (x < 0 && facingRight)
+        {
+            Flip();
+        }
 
         //right is the red Axis, foward is the blue axis
         velocity.x = x * speed;
@@ -70,5 +83,13 @@ public class Player : MonoBehaviour
             isGrounded = false;
         }
 
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = playerPhysics.localScale;
+        theScale.x *= -1;
+        playerPhysics.localScale = theScale;
     }
 }
