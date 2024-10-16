@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
 
     float timeToFire = 0;
     Transform firePoint;
+    public Transform bulletTrailPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +43,19 @@ public class Weapon : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 firePosition = firePoint.position;
         RaycastHit2D hit = Physics2D.Raycast(firePosition, mousePosition - firePosition, 100, whatToHit);
+        Effect(mousePosition);
         if (hit.collider != null)
         {
             Debug.Log(hit.collider);
         }
+    }
+
+    void Effect(Vector2 mousePos)
+    {
+        LineRenderer lr = Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation).GetComponent<LineRenderer>();
+        Vector3[] positions = new Vector3[2];
+        positions[0] = new Vector3(firePoint.position.x, firePoint.position.y, 0);
+        positions[1] = new Vector3(mousePos.x, mousePos.y, 0);
+        lr.SetPositions(positions);
     }
 }
