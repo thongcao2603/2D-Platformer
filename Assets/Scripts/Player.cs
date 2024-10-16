@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     bool facingRight = true;
 
     Transform playerPhysics;
+
+    public PlayerStats playerStats = new PlayerStats();
     private void Awake()
     {
         rigi = GetComponent<Rigidbody2D>();
@@ -35,6 +37,10 @@ public class Player : MonoBehaviour
     {
         IsGrounded();
         Movement();
+        if (transform.position.y < -20)
+        {
+            DamagePlayer(1000);
+        }
     }
 
     void Movement()
@@ -90,5 +96,14 @@ public class Player : MonoBehaviour
         Vector3 theScale = playerPhysics.localScale;
         theScale.x *= -1;
         playerPhysics.localScale = theScale;
+    }
+
+    void DamagePlayer(int damage)
+    {
+        playerStats.Health -= damage;
+        if (playerStats.Health < 0)
+        {
+            GameMaster.KillPlayer(this);
+        }
     }
 }
